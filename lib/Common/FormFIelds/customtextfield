@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+
+class CustomText extends StatelessWidget {
+   CustomText({
+    required this.controller,
+    required this.hintText,
+    required this.type,
+
+  });
+  final TextEditingController controller;
+  final TextInputType type;
+  final String hintText;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        autofillHints: Characters('email'),
+        autocorrect: true,
+        key: key,
+        keyboardType: type,
+        controller: controller,
+        decoration: InputDecoration(
+        fillColor: Colors.white,
+         filled: true,
+        
+          errorBorder: OutlineInputBorder(
+              // borderRadius: BorderRadius.circular(0),
+              borderSide: const BorderSide(
+                color: Colors.white,
+              )),
+          focusedBorder: OutlineInputBorder(
+              // borderRadius: BorderRadius.circular(0),
+              borderSide: const BorderSide(
+                color:Colors.white
+              )),
+          border: InputBorder.none,
+         
+          focusedErrorBorder: OutlineInputBorder(
+            // borderRadius: BorderRadius.circular(0),
+            borderSide: const BorderSide(
+              color:Colors.white
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+              // borderRadius: BorderRadius.circular(0),
+              borderSide: const BorderSide(
+                color: Colors.white
+              )),
+          hintText: hintText,
+          hintStyle: const TextStyle(fontSize: 14, color: Colors.black26),
+        ),
+       
+        
+        );
+  }
+}

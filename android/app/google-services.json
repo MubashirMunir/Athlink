@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "227997971246",
+    "project_id": "athlink-support",
+    "storage_bucket": "athlink-support.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:227997971246:android:a8627324e71f06213c00bf",
+        "android_client_info": {
+          "package_name": "com.example.athlink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZRz_f7KAGFakp6YWpkoHy6VrXFa6uUy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
