@@ -1,6 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/module/onboarding_module/module.dart';
-import 'package:athlink/screens/onbaording_screen/onbaording_Viewmodel/onbaording_viewModel.dart';
+import 'package:athlink/screens/onbaording_screen/viewmodel/onbaording_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +11,6 @@ class OnboardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<OnboardingViewModel>(
         builder: (ctrl) => Scaffold(
-
               body: PageView.builder(
                   onPageChanged: (index) => ctrl.currentIndex = index,
                   controller: ctrl.controller,

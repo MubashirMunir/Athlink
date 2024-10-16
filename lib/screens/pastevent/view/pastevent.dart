@@ -1,6 +1,6 @@
 import 'package:athlink/Common/AppText/AppTextView.dart';
 import 'package:athlink/module/first_eventmodel/first_event_model.dart';
-import 'package:athlink/screens/pastevent/pastevent_viewModel/pastevent_viewmodel.dart';
+import 'package:athlink/screens/pastevent/viewModel/pastevent_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';

@@ -1,6 +1,6 @@
-import 'package:athlink/screens/bottom_nav/bottomnav_view/bottomnav_view.dart';
-import 'package:athlink/screens/prompts%20_list/prompts_view/prompts_view.dart';
-import 'package:athlink/screens/selectintrerest/selectinterest_view/selectinterest_view.dart';
+import 'package:athlink/Routes/app_routes.dart';
+import 'package:athlink/screens/bottom_nav/view/bottomnav_view.dart';
+import 'package:athlink/screens/prompts%20_list/view/prompts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,6 +38,7 @@ class ConnectSocialViewModel extends GetxController {
   }
 
   void toContinue() {
-    Get.to(() => const SelectInterestView());
+    Get.toNamed(AppRoutes.SelectInterestView);
+    // Get.to(() => const SelectInterestView());
   }
 }

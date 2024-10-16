@@ -1,8 +1,7 @@
-
-import 'package:athlink/screens/bottom_nav/bottomnav_view/bottomnav_view.dart';
+import 'package:athlink/screens/bottom_nav/view/bottomnav_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:athlink/screens/terms_of_service/terms_of_service_view/terms_of_service_view.dart';
+import 'package:athlink/screens/terms_of_service/view/terms_of_service_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 

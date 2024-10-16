@@ -1,48 +1,44 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:athlink/Api/api.dart';
-import 'package:athlink/screens/resetpasword/resetpasword_view/resetpasword_view.dart';
-import 'package:athlink/screens/username/username_view/username_view.dart';
+import 'package:athlink/Routes/app_routes.dart';
+import 'package:athlink/Utils/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class VerifyPasswordModel1 extends GetxController {
+  BuildContext? context = Get.context;
   final emailController = TextEditingController();
   bool loading = false;
   get formKey => _formKey;
   final _formKey = GlobalKey<FormState>();
   TextEditingController controller = TextEditingController();
-
-  //
   void ToResetPas() {
-    Get.to(() => const ResetPasword());
+    Get.toNamed(AppRoutes.ResetPasword);
   }
 
-  void toUsername() {
-    Get.to(() => const UsernameView());
+  void toUsername(token) {
+    Get.toNamed(AppRoutes.UsernameView, arguments: {'token': '$token'});
   }
 
   // ignore: non_constant_identifier_names
-  Future<void> VerifyOTP(String otp) async {
+  Future<void> VerifyOTP(token) async {
     try {
-      String jso = jsonEncode({'otp': otp});
-
-      print(jso);
       final response =
           await http.post(Uri.parse(API.baseUrl + API.verifyOtpUrl),
               headers: {
                 "Content-Type": "application/json",
-                // "Accept": "*/*",
+                "Accept": "*/*",
+                'Authorization': 'Bearer $token',
               },
-              body: jso);
+              body: jsonEncode({'otp': controller.text.toString()}));
       print(response.body);
-      // Check the response status
-      var data = jsonDecode(response.body);
-      var token = data['token'];
+
       if (response.statusCode == 200) {
-        toUsername();
+        toUsername(token);
         print('Request successful');
+        print(token);
         print('Response body: ${response.body}');
       } else {
         print('Request failed with status: ${response.statusCode}');
@@ -75,5 +71,43 @@ class VerifyPasswordModel1 extends GetxController {
   void onInit() {
     timer();
     super.onInit();
+  }
+
+  void resendOTP(String token) async {
+    if (context == null) return; // Ensure context is not null
+    try {
+      var response = await http.post(
+        Uri.parse(API.baseUrl + API.resendotp),
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $token',
+        },
+      );
+      showLoadingIndicator(context: context!);
+      var data = jsonDecode(response.body);
+      var message = data['message'].toString();
+      print("Status code: ${response.statusCode}");
+      print("Decoded response body: $data");
+
+      if (response.statusCode == 200) {
+        hideOpenDialog(context: context!);
+        print("Response body: ${response.body}");
+        ScaffoldMessenger.of(context!).showSnackBar(
+          const SnackBar(content: Text('Request successful')),
+        );
+      } else {
+        hideOpenDialog(context: context!);
+        ScaffoldMessenger.of(context!).showSnackBar(
+          SnackBar(
+              content:
+                  Text('Error: ${data['message'] ?? 'Something went wrong'}')),
+        );
+      }
+    } catch (e) {
+      hideOpenDialog(context: context!);
+      ScaffoldMessenger.of(context!).showSnackBar(
+        SnackBar(content: Text('Exception: ${e.toString()}')),
+      );
+    }
   }
 }

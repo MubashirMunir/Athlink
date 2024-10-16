@@ -1,6 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/module/drawermodel/drawer_model.dart';
-import 'package:athlink/screens/account/account_view/account_view.dart';
+import 'package:athlink/screens/account/view/account_view.dart';
 import 'package:athlink/screens/detailedit/detailedite_view/detailedietview.dart';
 import 'package:athlink/screens/drawer/drawer_viewModel/drawer_viewModel.dart';
 import 'package:flutter/material.dart';

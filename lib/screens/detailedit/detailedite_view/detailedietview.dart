@@ -1,6 +1,6 @@
 import 'package:athlink/Common/FormFIelds/customtextfield';
 import 'package:athlink/screens/detailedit/detailediet_viewmodel/detaileditviewmethode.dart';
-import 'package:athlink/screens/personal_details/personal_details_view/personalDetail_view.dart';
+import 'package:athlink/screens/personal_details/view/personalDetail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

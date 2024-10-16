@@ -1,4 +1,4 @@
-import 'package:athlink/screens/subscripted/subscripted_view/subscripted_view.dart';
+import 'package:athlink/screens/subscripted/view/subscripted_view.dart';
 import 'package:get/get.dart';
 
 class SubscriptionViewmodel extends GetxController {

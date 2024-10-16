@@ -1,6 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/module/Monthly_subcription/subcription.dart';
-import 'package:athlink/screens/subscription/subsciption_viewModel/subscription_viewModel.dart';
+import 'package:athlink/screens/subscription/viewModel/subscription_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

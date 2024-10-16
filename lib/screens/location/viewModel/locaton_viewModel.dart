@@ -1,4 +1,3 @@
-import 'package:athlink/screens/personal_info/personal_info_View/personal_info_view.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -40,9 +39,5 @@ class LocationViewModel extends GetxController {
       print(e);
     }
     throw Exception('error accured');
-  }
-
-  void toPinfo() {
-    Get.to(() => const PersonalInfoView());
   }
 }

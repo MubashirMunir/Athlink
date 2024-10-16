@@ -1,14 +1,14 @@
-import 'dart:async';
-
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/screens/verifypassword/verifyPassword_viewModel/verifypassword_viewModel.dart';
+import 'package:athlink/screens/verifypassword/viewModel/verifypassword_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 class VerifyPassword1 extends StatelessWidget {
-  VerifyPassword1({Key? key, required this.email}) : super(key: key);
-  String email;
+  String email = Get.arguments['email'];
+  String token = Get.arguments['token'];
+
+  VerifyPassword1({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VerifyPasswordModel1>(builder: (ctrl) {
@@ -50,7 +50,6 @@ class VerifyPassword1 extends StatelessWidget {
                   length: 6,
                   controller: ctrl.controller,
                   onCompleted: (value) {
-                    print(codechange);
                     codechange = value;
                   },
                   closeKeyboardWhenCompleted: true,
@@ -71,7 +70,7 @@ class VerifyPassword1 extends StatelessWidget {
               PrimaryBTN(
                 callback: () {
                   print(codechange);
-                  ctrl.VerifyOTP(codechange);
+                  ctrl.VerifyOTP(token);
                 },
                 color: Colors.red,
                 title: 'Confirm',
@@ -82,7 +81,9 @@ class VerifyPassword1 extends StatelessWidget {
                   : Padding(
                       padding: const EdgeInsets.only(top: 30),
                       child: PrimaryBTN(
-                        callback: () {},
+                        callback: () {
+                          ctrl.resendOTP(token);
+                        },
                         color: Colors.black12,
                         title: 'Resend',
                         width: 320,

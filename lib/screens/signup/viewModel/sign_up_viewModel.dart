@@ -1,31 +1,39 @@
 import 'dart:convert';
+
 import 'package:athlink/Routes/app_routes.dart';
-import 'package:athlink/screens/bottom_nav/bottomnav_view/bottomnav_view.dart';
+import 'package:athlink/Utils/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:athlink/Api/api.dart';
-import 'package:athlink/screens/terms_of_service/terms_of_service_view/terms_of_service_view.dart';
-import 'package:athlink/screens/verifypassword/verifypassword_view/verifypassword_view.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpViewModel extends GetxController {
   final formKey = GlobalKey<FormState>();
-
   final username = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmpassword = TextEditingController();
   bool isObSecure = true;
   bool isObSecure2 = true;
-  bool loading = false;
-
+  BuildContext? context = Get.context;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  var token;
+  var getToken;
+
+  void adToken() async {
+    print(getToken);
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setString('token', token);
+    getToken = sp.getString('token');
+  }
 
   Future<void> createAccountAPI() async {
-    loading == true;
+    showLoadingIndicator(context: context!);
+
     var data = {
       "email": emailController.text.toString(),
       "password": passwordController.text.toString(),
@@ -41,21 +49,22 @@ class SignUpViewModel extends GetxController {
         },
         body: jsonEncode(data),
       );
-
+      var responsedata = jsonDecode(response.body);
+      token = responsedata['token'];
       if (response.statusCode == 200) {
-        loading = false;
+        hideOpenDialog(context: context!);
         toVerifyAccount();
         update();
         print('Response body: ${response.body}');
       } else {
-        loading == false;
-        update();
+        hideOpenDialog(context: context!);
+
         print('Request failed with status: ${response.statusCode}');
         print('Response body: ${response.body}');
       }
     } catch (e) {
-      loading = false;
-      update();
+      hideOpenDialog(context: context!);
+
       Get.snackbar('error', e.toString());
     }
   }
@@ -88,10 +97,16 @@ class SignUpViewModel extends GetxController {
   }
 
   void toVerifyAccount() {
+    showLoadingIndicator(context: context!);
+
     if (formKey.currentState!.validate()) {
-      Get.to(VerifyPassword1(email: emailController.text));
+      Get.toNamed(AppRoutes.VerifyPassword1, arguments: {
+        'email': emailController.text.toString(),
+        'token': token.toString(),
+      });
     } else {
-      // Get.snackbar('Warning', 'Something went wrong');
+      hideOpenDialog(context: context!);
+      Get.snackbar('Warning', 'Something went wrong');
     }
   }
 
@@ -101,7 +116,6 @@ class SignUpViewModel extends GetxController {
 
   void tobottom() {
     Get.toNamed(AppRoutes.BottomnavView);
-
   }
 
   Future<User?> signInWithGoogle() async {
@@ -126,10 +140,5 @@ class SignUpViewModel extends GetxController {
       print('Sign in failed: $e');
       return null;
     }
-  }
-
-  void loader() {
-    loading = !loading;
-    update();
   }
 }

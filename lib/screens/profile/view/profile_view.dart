@@ -2,7 +2,7 @@ import 'package:athlink/Common/AppText/AppTextView.dart';
 import 'package:athlink/Theme/colors.dart';
 import 'package:athlink/module/achievements_model/achievment_model.dart';
 import 'package:athlink/module/home_model/home_model.dart';
-import 'package:athlink/screens/profile/profile_viewmodel/profile_viewmodel.dart';
+import 'package:athlink/screens/profile/viewModel/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

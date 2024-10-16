@@ -1,10 +1,13 @@
 import 'package:athlink/App/Splash/View/splash_view.dart';
 import 'package:athlink/App/Splash/ViewModel/splash_view_model.dart';
-import 'package:athlink/module/profile_model/profile_model.dart';
-import 'package:athlink/screens/bottom_nav/bottomnav_view/bottomnav_view.dart';
-import 'package:athlink/screens/bottom_nav/bottomnav_viewModel/bottomnav_viewModel.dart';
+import 'package:athlink/screens/bottom_nav/view/bottomnav_view.dart';
+import 'package:athlink/screens/bottom_nav/viewmodel/bottomnav_viewModel.dart';
 import 'package:athlink/screens/chat/viewModel/chat_viewmdel.dart';
+import 'package:athlink/screens/connect_social/view/connect_social.dart';
+import 'package:athlink/screens/connect_social/viewModel/connect_social_viewModel.dart';
 import 'package:athlink/screens/event/viewModel/eventviewmodel.dart';
+import 'package:athlink/screens/eventfirstscreen/view/evetfirstscreen.dart';
+import 'package:athlink/screens/eventfirstscreen/viewModel/eventfirstscreen_viewmodel.dart';
 import 'package:athlink/screens/forgetpassword/viewModel/forgetpassword_viewModel.dart';
 import 'package:athlink/screens/forgetpassword/view/forgetpassword_view.dart';
 import 'package:athlink/screens/home/view/home_view.dart';
@@ -13,20 +16,24 @@ import 'package:athlink/screens/location/view/location_view.dart';
 import 'package:athlink/screens/location/viewModel/locaton_viewModel.dart';
 import 'package:athlink/screens/login/view/login_view.dart';
 import 'package:athlink/screens/login/viewModel/login_viewModel.dart';
-import 'package:athlink/screens/onbaording_screen/onbaording_Viewmodel/onbaording_viewModel.dart';
-import 'package:athlink/screens/onbaording_screen/onboarding_view/onboarding_view.dart';
-import 'package:athlink/screens/profile/profile_view/profile_view.dart';
-import 'package:athlink/screens/profile/profile_viewmodel/profile_viewmodel.dart';
-import 'package:athlink/screens/prompts/prompts_view/prompts_view.dart';
-import 'package:athlink/screens/prompts/prompts_viewModel/prompts_viewModel.dart';
-import 'package:athlink/screens/signup/signup_View/signup_view.dart';
-import 'package:athlink/screens/signup/signup_viewModel/sign_up_viewModel.dart';
-import 'package:athlink/screens/username/username_view/username_view.dart';
-import 'package:athlink/screens/username/username_viewModel/username_viewModel.dart';
-import 'package:athlink/screens/verifypassword%20-%20Copy/verifyPassword_viewModel/verifypassword_viewModel.dart';
-import 'package:athlink/screens/verifypassword%20-%20Copy/verifypassword_view/verifypassword_view.dart';
-import 'package:athlink/screens/verifypassword/verifyPassword_viewModel/verifypassword_viewModel.dart';
-import 'package:athlink/screens/verifypassword/verifypassword_view/verifypassword_view.dart';
+import 'package:athlink/screens/onbaording_screen/viewmodel/onbaording_viewModel.dart';
+import 'package:athlink/screens/onbaording_screen/view/onboarding_view.dart';
+import 'package:athlink/screens/personal_info/view/personal_info_view.dart';
+import 'package:athlink/screens/personal_info/viewModel/personal_info_viewModel.dart';
+import 'package:athlink/screens/profile/view/profile_view.dart';
+import 'package:athlink/screens/profile/viewModel/profile_viewmodel.dart';
+import 'package:athlink/screens/prompts/view/prompts_view.dart';
+import 'package:athlink/screens/prompts/viewModel/prompts_viewModel.dart';
+import 'package:athlink/screens/selectintrerest/view/selectinterest_view.dart';
+import 'package:athlink/screens/selectintrerest/viewModel/selectinterest_viewModel.dart';
+import 'package:athlink/screens/signup/view/signup_view.dart';
+import 'package:athlink/screens/signup/viewModel/sign_up_viewModel.dart';
+import 'package:athlink/screens/username/view/username_view.dart';
+import 'package:athlink/screens/username/viewModel/username_viewModel.dart';
+import 'package:athlink/screens/verifypassword%20-%20Copy/viewModel/verifypassword_viewModel.dart';
+import 'package:athlink/screens/verifypassword%20-%20Copy/view/verifypassword_view.dart';
+import 'package:athlink/screens/verifypassword/viewModel/verifypassword_viewModel.dart';
+import 'package:athlink/screens/verifypassword/view/verifypassword_view.dart';
 import 'package:get/get.dart';
 
 import 'app_routes.dart';
@@ -101,7 +108,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.SignUpScreen,
-      page: () => const SignUpScreen(),
+      page: () => SignUpScreen(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<SignUpViewModel>(
@@ -131,9 +138,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.VerifyPassword,
-      page: () => VerifyPassword(
-        email: '',
-      ),
+      page: () => VerifyPassword(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<VerifyPasswordModel>(
@@ -143,9 +148,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.VerifyPassword1,
-      page: () => VerifyPassword1(
-        email: '',
-      ),
+      page: () => VerifyPassword1(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<VerifyPasswordModel1>(() => VerifyPasswordModel1());
@@ -153,7 +156,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.ProfileView,
-      page: () => ProfileView(),
+      page: () => const ProfileView(),
       transition: Transition.fadeIn,
       binding: BindingsBuilder(() {
         Get.lazyPut<ProfileViewmodel>(
@@ -178,6 +181,46 @@ class AppPages {
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginViewModel>(
           () => LoginViewModel(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.PInfoView,
+      page: () => const PersonalInfoView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<PersonalInfoViewModel>(
+          () => PersonalInfoViewModel(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.ConnectSocialView,
+      page: () => const ConnectSocialView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<ConnectSocialViewModel>(
+          () => ConnectSocialViewModel(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.SelectInterestView,
+      page: () => const SelectInterestView(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<SelectinterestViewmodel>(
+          () => SelectinterestViewmodel(),
+        );
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.EventFirstScreen,
+      page: () => const EventFirstScreen(),
+      transition: Transition.fadeIn,
+      binding: BindingsBuilder(() {
+        Get.lazyPut<EventFirstScreenViewModel>(
+          () => EventFirstScreenViewModel(),
         );
       }),
     ),

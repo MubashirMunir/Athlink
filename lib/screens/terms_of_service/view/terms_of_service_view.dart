@@ -1,5 +1,5 @@
 import 'package:athlink/module/termofservice_model/termofservice.dart';
-import 'package:athlink/screens/terms_of_service/terms_of_service_viewModel/terms_of_service_vewModel.dart';
+import 'package:athlink/screens/terms_of_service/viewModel/terms_of_service_vewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,15 +1,17 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/screens/verifypassword/verifyPassword_viewModel/verifypassword_viewModel.dart';
+import 'package:athlink/screens/verifypassword%20-%20Copy/viewModel/verifypassword_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class VerifyPassword extends StatelessWidget {
-  VerifyPassword({Key? key, required this.email}) : super(key: key);
-  String email;
+  VerifyPassword({
+    Key? key,
+  }) : super(key: key);
+  var email = Get.arguments['email'];
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<VerifyPasswordModel1>(
+    return GetBuilder<VerifyPasswordModel>(
         builder: (ctrl) => Scaffold(
               backgroundColor: Colors.white,
               body: SingleChildScrollView(

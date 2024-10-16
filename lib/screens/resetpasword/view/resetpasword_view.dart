@@ -1,4 +1,4 @@
-import 'package:athlink/screens/resetpasword/resetpasword_viewModel/resetpasword_viewmodel.dart';
+import 'package:athlink/screens/resetpasword/viewModel/resetpasword_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:athlink/Common/AppBTN/primary_btn.dart';

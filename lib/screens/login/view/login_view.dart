@@ -60,7 +60,7 @@ class LoginView extends StatelessWidget {
                               ctrl.obSecure();
                               ctrl.update();
                             },
-                            type: TextInputType.text,
+                            type: TextInputType.number,
                             icon: ctrl.isObSecure
                                 ? Icons.visibility
                                 : Icons.visibility_off,

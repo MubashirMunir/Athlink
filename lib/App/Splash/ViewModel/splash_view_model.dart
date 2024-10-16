@@ -27,7 +27,7 @@ class SplashViewModel extends GetxController {
     if (FT == true) {
       Get.offNamed(AppRoutes.OnboardingView);
     } else {
-      Get.offNamed(AppRoutes.LoginView);
+      Get.offNamed(AppRoutes.EventFirstScreen);
     }
   }
 

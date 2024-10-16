@@ -1,5 +1,4 @@
-import 'package:athlink/screens/connect_social/view/connect_social.dart';
-import 'package:athlink/screens/prompts%20_list/prompts_view/prompts_view.dart';
+import 'package:athlink/Routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +12,7 @@ class PromptsViewModel extends GetxController {
   final formKey3 = GlobalKey<FormState>();
   void toPromptsList() {
     if (formKey.currentState!.validate()) {
-      Get.to(() => const PromptsListView());
+      Get.toNamed(AppRoutes.PromptsAnswer);
     }
   }
 
@@ -32,6 +31,6 @@ class PromptsViewModel extends GetxController {
   }
 
   void connectSocial() {
-    Get.to(() => const ConnectSocialView());
+    Get.toNamed(AppRoutes.SelectInterestView);
   }
 }

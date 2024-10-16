@@ -1,23 +1,27 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/Utils/loader.dart';
-import 'package:athlink/screens/privacypolicy/privacypolicy_view/privacypolicy_view.dart';
-import 'package:athlink/screens/signup/signup_viewModel/sign_up_viewModel.dart';
+import 'package:athlink/screens/privacypolicy/view/privacypolicy_view.dart';
+import 'package:athlink/screens/signup/viewModel/sign_up_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../Common/FormFIelds/custom_text_field.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  SignUpScreen({Key? key}) : super(key: key);
+  String dropdownvalue = 'Item 1';
 
+  // List of items in our dropdown menu
+  var items = [
+    'Item 1',
+    'Item 2',
+    'Item 3',
+    'Item 4',
+  ];
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignUpViewModel>(
         builder: (ctrl) => Scaffold(
               backgroundColor: Colors.white,
-              // appBar: AppBar(
-              //   centerTitle: true,
-              //   // title:  const AppbarText(text: 'Sign in',)
-              // ),
               body: SingleChildScrollView(
                   child: Column(
                 children: [
@@ -150,25 +154,20 @@ class SignUpScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        // Container(
-                        //   decoration: BoxDecoration(
-                        //       color: Colors.red,
-                        //       borderRadius: BorderRadius.circular(10)),
-                        //   width: 300,
-                        //   child: TextButton(
-                        //       onPressed: () {
-                        //         ctrl.loader();
-                        //         ctrl.createAccountAPI();
-                        //       },
-                        //       child: ctrl.loading
-                        //           ? CircularProgressIndicator(
-                        //               color: Colors.white,
-                        //             )
-                        //           : Text(
-                        //               'Register',
-                        //               style: TextStyle(color: Colors.white),
-                        //             )),
-                        // ),
+                        DropdownButton(
+                            value: dropdownvalue,
+                            hint: Text('data'),
+                            // Down Arrow Icon
+                            icon: Icon(Icons.keyboard_arrow_down),
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              dropdownvalue = newValue!;
+                            }),
                         PrimaryBTN(
                           callback: () {
                             if (ctrl.formKey.currentState!.validate()) {
@@ -230,7 +229,9 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            ctrl.adToken();
+                          },
                           icon: const Padding(
                             padding: EdgeInsets.only(left: 40, right: 50),
                             child: Row(
@@ -267,21 +268,7 @@ class SignUpScreen extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 13),
                               )),
-                        ]), // Row(
-                        //   children: [
-                        //     const Text(
-                        //       ' and',
-                        //       style: TextStyle(color: Colors.black26),
-                        //     ),
-                        //     TextButton(
-                        //         onPressed: () {},
-                        //         child: const Text(
-                        //           'privacy policy',
-                        //           style: TextStyle(
-                        //               color: Colors.black, fontSize: 13),
-                        //         )),
-                        //   ],
-                        // )
+                        ]),
                         TextButton(
                             onPressed: () {
                               Get.to(const PrivacyPolicyView());

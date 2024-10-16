@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:athlink/Api/api.dart';
-import 'package:athlink/screens/participantlist/participantlist_view/participant_view.dart';
+import 'package:athlink/Routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -8,8 +8,9 @@ import 'package:get/get.dart';
 
 class EventFirstScreenViewModel extends GetxController {
   Map<String, dynamic>? paymentIntentData;
+  BuildContext? context = Get.context;
 
-  Future<void> makePayment(BuildContext context) async {
+  Future<void> makePayment() async {
     try {
       paymentIntentData = await createPaymentIntent('20', 'USD');
       await Stripe.instance.initPaymentSheet(
@@ -20,66 +21,51 @@ class EventFirstScreenViewModel extends GetxController {
         ),
       );
 
-      await displayPaymentSheet(context);
-    } catch (e, s) {
-      print('Payment exception: $e\n$s');
-    }
-  }
-
-  Future<void> displayPaymentSheet(BuildContext context) async {
-    try {
-      await Stripe.instance.presentPaymentSheet();
-      print('Payment successful');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Paid successfully")),
-      );
-      paymentIntentData = null;
-    } on StripeException catch (e) {
-      print('StripeException: $e');
-      showDialog(
-        context: context,
-        builder: (_) => const AlertDialog(
-          content: Text("Payment cancelled"),
-        ),
-      );
-    } catch (e) {
-      print('General exception: $e');
+      try {
+        await Stripe.instance.presentPaymentSheet();
+      } on StripeException catch (e) {
+        ScaffoldMessenger.of(context!)
+            .showSnackBar(SnackBar(content: Text(e.toString())));
+      } catch (e) {
+        print('General exception: $e');
+      }
+    } catch (e, stacktrace) {
+      ScaffoldMessenger.of(context!)
+          .showSnackBar(SnackBar(content: Text('payment cenceled')));
     }
   }
 
   Future<Map<String, dynamic>> createPaymentIntent(
       String amount, String currency) async {
     try {
-      final body = {
-        'amount': calculateAmount(amount),
-        'currency': currency,
-        'payment_method_types[]': 'card',
-      };
       final response = await http.post(
         Uri.parse('https://api.stripe.com/v1/payment_intents'),
-        body: body,
+        body: {
+          'amount': (int.parse(amount) * 100).toString(),
+          'currency': currency,
+          'payment_method_types[]': 'card',
+        },
         headers: {
-          'Authorization': 'Bearer ${API.stripePublisherKey}',
+          'Authorization': 'Bearer ${Keys.secretKey}',
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       );
+      print(response.body);
+      return jsonDecode(response.body);
 
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body);
-      } else {
-        throw Exception('Failed to create payment intent');
-      }
+      // if (response.statusCode == 200) {
+
+      //    return jsonDecode(response.body);
+      // } else {
+      //   throw Exception('Failed to create payment intent');
+      // }
     } catch (err) {
-      print('Error creating payment intent: ${err.toString()}');
+      print('Error creating payment intent: ');
       rethrow; // Optional: rethrow to handle higher-level errors
     }
   }
 
-  String calculateAmount(String amount) {
-    return (int.parse(amount) * 100).toString();
-  }
-
   void participantlist() {
-    Get.to(const ParticipantListView());
+    Get.toNamed(AppRoutes.ParticipantListView);
   }
 }

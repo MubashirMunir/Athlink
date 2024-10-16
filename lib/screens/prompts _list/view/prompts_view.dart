@@ -1,7 +1,7 @@
 import 'package:athlink/Common/custom_list.dart';
 import 'package:athlink/module/prompts_model.dart';
-import 'package:athlink/screens/prompts%20_list/prompts_viewModel/prompts_viewModel.dart';
-import 'package:athlink/screens/promptsanswer/prompts_answer/prompts_answer.dart';
+import 'package:athlink/screens/prompts%20_list/viewModel/prompts_viewModel.dart';
+import 'package:athlink/screens/promptsanswer/view/prompts_answer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

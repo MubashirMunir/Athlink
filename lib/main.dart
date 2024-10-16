@@ -1,16 +1,17 @@
+import 'package:athlink/Api/api.dart';
 import 'package:athlink/Localization/translation_message.dart';
 import 'package:athlink/Routes/app_pages.dart';
 import 'package:athlink/Routes/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // Stripe.publishableKey =
-  //     'pk_test_51PshA3P8qI2Ek67e5FORRJxdsk0jYFEWObTCR1rdcAcuLkLzHAgExJnzD8E3CbvdUgUSBOQd8qtlzlt434n8ZGnZ00nHkD2m6V';
+  Stripe.publishableKey = Keys.polishableAbleKey;
 
   SystemChrome.setPreferredOrientations(
     [

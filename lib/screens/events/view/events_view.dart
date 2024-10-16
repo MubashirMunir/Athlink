@@ -2,7 +2,7 @@ import 'package:athlink/Theme/colors.dart';
 import 'package:athlink/module/events_model/events_model.dart';
 import 'package:athlink/module/recomended_model/recomended_model.dart';
 import 'package:athlink/screens/events/viewModel/events_viewmodel.dart';
-import 'package:athlink/screens/pastevent/pastevent_view/pastevent.dart';
+import 'package:athlink/screens/pastevent/view/pastevent.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/screens/prompts/prompts_viewModel/prompts_viewModel.dart';
+import 'package:athlink/Routes/app_routes.dart';
+import 'package:athlink/screens/prompts/viewModel/prompts_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class PromptsView extends StatelessWidget {
                 actions: [
                   TextButton(
                       onPressed: () {
-                        ctrl.connectSocial();
+                        Get.toNamed(AppRoutes.SelectInterestView);
                       },
                       child: const Text('Skip'))
                 ],

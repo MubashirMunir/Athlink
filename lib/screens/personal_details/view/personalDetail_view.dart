@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/Common/FormFIelds/customtextfield';
-import 'package:athlink/screens/personal_details/personal_details_viewModel/personaldetails_viewmodel.dart';
+import 'package:athlink/screens/personal_details/viewModel/personaldetails_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

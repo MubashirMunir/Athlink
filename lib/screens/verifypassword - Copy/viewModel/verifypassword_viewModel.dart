@@ -1,4 +1,4 @@
-import 'package:athlink/screens/resetpasword/resetpasword_view/resetpasword_view.dart';
+import 'package:athlink/Routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +26,6 @@ class VerifyPasswordModel extends GetxController {
   //   }
   // }
   ToResetPas() {
-    Get.to(const ResetPasword());
+    Get.toNamed(AppRoutes.ResetPasword);
   }
 }

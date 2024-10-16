@@ -1,5 +1,5 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/screens/promptsanswer/prompts_answer_viewModel/prompts_answer_viewModel.dart';
+import 'package:athlink/screens/promptsanswer/viewModel/prompts_answer_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

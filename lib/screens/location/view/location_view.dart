@@ -1,5 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/Common/AppText/AppTextView.dart';
+import 'package:athlink/Routes/app_routes.dart';
 import 'package:athlink/screens/location/viewModel/locaton_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,8 +36,10 @@ class LocationView extends StatelessWidget {
                   Center(
                     child: PrimaryBTN(
                       callback: () {
+                        Get.toNamed(
+                          AppRoutes.PInfoView,
+                        );
                         ctrl.determinePosition();
-                        ctrl.toPinfo();
                       },
                       color: Colors.redAccent,
                       title: 'Enable',

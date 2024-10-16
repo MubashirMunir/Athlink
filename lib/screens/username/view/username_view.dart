@@ -1,6 +1,6 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
 import 'package:athlink/Common/FormFIelds/custom_text_field.dart';
-import 'package:athlink/screens/username/username_viewModel/username_viewModel.dart';
+import 'package:athlink/screens/username/viewModel/username_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

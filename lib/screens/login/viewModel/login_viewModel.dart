@@ -57,13 +57,14 @@ class LoginViewModel extends GetxController {
       'password': passwordController.text.toString(),
     };
     try {
-      final response = await http.post(Uri.parse(API.baseUrl + API.loginUrl),
+      final response = await http.post(Uri.parse(API.baseUrl + API.loginOtp),
           headers: {
             "Content-Type": "application/json",
             "Accept": "*/*",
           },
           body: jsonEncode(data));
-      print(response.body);
+
+      print(response);
       // Check the response status
       if (response.statusCode == 200) {
         print('Response body: ${response.body}');

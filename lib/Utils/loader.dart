@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:athlink/Constant/AppConfig.dart';
-import 'package:athlink/Theme/colors.dart';
 
 void hideOpenDialog({
   required BuildContext context,
@@ -40,7 +39,7 @@ void showLoadingIndicator(
                   height: 50,
                   width: 50,
                   child: CircularProgressIndicator(
-                    color: AppColor.primaryColor,
+                    color: Colors.red,
                   ),
                 ),
               ],

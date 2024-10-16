@@ -1,19 +1,38 @@
+import 'dart:convert';
+
+import 'package:athlink/Api/api.dart';
+import 'package:athlink/Routes/app_routes.dart';
 import 'package:athlink/module/selectinterest_model/selectinterest.dart';
-import 'package:athlink/screens/prompts/prompts_view/prompts_view.dart';
+import 'package:athlink/screens/prompts/view/prompts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SelectinterestViewmodel extends GetxController {
-  final _formKey = GlobalKey<FormState>();
-  get formKey => _formKey;
-  get formKey1 => _formKey;
-  get formKey2 => _formKey;
+  final formKey = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
+
   bool isObSecure = true;
   bool isObSecure2 = true;
   bool loading = false;
   void loadingTrue() {
     update();
     loading = true;
+  }
+
+  @override
+  void onInit() {
+    getToken();
+    super.onInit();
+  }
+
+  var token;
+  Future<void> getToken() async {
+    print(token);
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    token = sp.getString('token');
   }
 
   List<SelectInterest> interestmodel = [];
@@ -27,7 +46,6 @@ class SelectinterestViewmodel extends GetxController {
   String selectedValue = 'Select Sport';
   String selectedValue1 = 'Select Experience';
 
-  //list that will be expanded
   List<String> lang = ['Cricket', 'Hockey', 'Polo', 'Footbal'];
   List<String> gender = ['Intermediet', 'Expert', 'Beginner'];
 
@@ -49,6 +67,7 @@ class SelectinterestViewmodel extends GetxController {
   }
 
   void toPrompts() {
+    Get.toNamed(AppRoutes.PromptsView);
     Get.to(const PromptsView());
     update();
   }
@@ -77,6 +96,35 @@ class SelectinterestViewmodel extends GetxController {
       count++;
     } else {
       count--;
+    }
+  }
+
+  Future<void> addinterest(String sport, String level) async {
+    try {
+      // Create the data map
+      final data = {
+        'sport': sport,
+        'level': level,
+      };
+
+      // Send the POST request with the body encoded as JSON
+      final response = await http.post(
+        Uri.parse(API.baseUrl + API.selectinterest),
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(data), // Encode the map to JSON
+      );
+
+      if (response.statusCode == 200) {
+        print(response.body);
+      } else {
+        // Handle error response here
+        print('Error: ${response.statusCode} - ${response.body}');
+      }
+    } catch (e) {
+      print('Exception: $e');
     }
   }
 }

@@ -1,5 +1,3 @@
-import 'package:athlink/screens/login/view/login_view.dart';
-
 mixin AppRoutes {
   static const splashView = "/";
   static const OnboardingView = "/onboarding";
@@ -32,4 +30,6 @@ mixin AppRoutes {
   static const VerifyPassword = "/verifypas";
   static const VerifyPassword1 = "/verifypas1";
   static const LocationView = "/locationView";
+  static const PrivacyPolicyView = "/privacypolicy";
+  static const EventFirstScreen = '/eventfirstscreen';
 }

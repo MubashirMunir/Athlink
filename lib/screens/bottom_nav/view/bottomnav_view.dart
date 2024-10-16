@@ -1,4 +1,4 @@
-import 'package:athlink/screens/bottom_nav/bottomnav_viewModel/bottomnav_viewModel.dart';
+import 'package:athlink/screens/bottom_nav/viewmodel/bottomnav_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

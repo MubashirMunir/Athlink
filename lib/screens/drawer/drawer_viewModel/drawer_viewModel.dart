@@ -1,8 +1,8 @@
 import 'package:athlink/screens/event/view/eventview.dart';
 import 'package:athlink/screens/language/view/language_view.dart';
-import 'package:athlink/screens/privacypolicy/privacypolicy_view/privacypolicy_view.dart';
-import 'package:athlink/screens/subscription/subscription_view/subscription_view.dart';
-import 'package:athlink/screens/terms_of_service/terms_of_service_view/terms_of_service_view.dart';
+import 'package:athlink/screens/privacypolicy/view/privacypolicy_view.dart';
+import 'package:athlink/screens/subscription/view/subscription_view.dart';
+import 'package:athlink/screens/terms_of_service/view/terms_of_service_view.dart';
 import 'package:get/get.dart';
 
 class DrawerWidgetModel extends GetxController {

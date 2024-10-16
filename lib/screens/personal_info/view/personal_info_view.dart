@@ -1,5 +1,5 @@
 import 'package:athlink/Common/AppBTN/primary_btn.dart';
-import 'package:athlink/screens/personal_info/personal_info_viewModel/personal_info_viewModel.dart';
+import 'package:athlink/screens/personal_info/viewModel/personal_info_viewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -7,7 +7,6 @@ import '../../../../Common/FormFIelds/custom_text_field.dart';
 
 class PersonalInfoView extends StatelessWidget {
   const PersonalInfoView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PersonalInfoViewModel>(
@@ -38,6 +37,7 @@ class PersonalInfoView extends StatelessWidget {
                     child: Column(
                       children: [
                         IntlPhoneField(
+                          controller: ctrl.phoneNumber,
                           decoration: InputDecoration(
                             counterText: '',
                             focusedBorder: OutlineInputBorder(
@@ -64,7 +64,7 @@ class PersonalInfoView extends StatelessWidget {
                           showCursor: true,
                           obscureText: false,
                           key: key,
-                          controller: ctrl.location,
+                          controller: ctrl.bio,
                           decoration: InputDecoration(
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(13),
@@ -171,10 +171,7 @@ class PersonalInfoView extends StatelessWidget {
                           validateError: 'enter valid password',
                           type: TextInputType.phone,
                           hintText: 'Postal Code',
-                          iconClik: () {
-                            ctrl.obSecure();
-                            ctrl.update();
-                          },
+                          iconClik: () {},
                           obsecure: false,
                         ),
                         const SizedBox(
@@ -184,12 +181,9 @@ class PersonalInfoView extends StatelessWidget {
                           click: () {},
                           controller: ctrl.city,
                           validateError: 'enter valid password',
-                          type: TextInputType.phone,
+                          type: TextInputType.text,
                           hintText: 'City',
-                          iconClik: () {
-                            ctrl.obSecure();
-                            ctrl.update();
-                          },
+                          iconClik: () {},
                           obsecure: false,
                         ),
                         const SizedBox(
@@ -199,12 +193,9 @@ class PersonalInfoView extends StatelessWidget {
                           click: () {},
                           controller: ctrl.country,
                           validateError: 'enter valid password',
-                          type: TextInputType.phone,
+                          type: TextInputType.text,
                           hintText: 'Country',
-                          iconClik: () {
-                            ctrl.obSecure();
-                            ctrl.update();
-                          },
+                          iconClik: () {},
                           obsecure: false,
                         ),
                         const SizedBox(
@@ -290,36 +281,40 @@ class PersonalInfoView extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        Container(
-                          width: 400,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Colors.black12)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(9.0),
-                                child: Text(ctrl.dateTime().toString()),
-                              ),
-                              IconButton(
+                        TextFormField(
+                          obscureText: false,
+                          key: key,
+                          controller: ctrl.dateController,
+                          decoration: InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color: Color(0x1F3F91B3),
+                                  )),
+                              border: InputBorder.none,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(13),
+                                  borderSide: const BorderSide(
+                                    color: Color(0x1F3F91B3),
+                                  )),
+                              hintText: 'ad',
+                              hintStyle: const TextStyle(
+                                  fontSize: 14, color: Colors.black26),
+                              suffix: IconButton(
                                   onPressed: () {
                                     ctrl.date(context);
                                   },
                                   icon: const Icon(
                                     Icons.calendar_month,
-                                    size: 15,
-                                  )),
-                            ],
-                          ),
+                                    size: 14,
+                                  ))),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
                         TextFormField(
                           showCursor: true,
-                          maxLength: 12,
+                          maxLength: 99,
                           maxLines: 3,
                           obscureText: false,
                           key: key,
@@ -343,7 +338,7 @@ class PersonalInfoView extends StatelessWidget {
                         ),
                         PrimaryBTN(
                           callback: () {
-                            ctrl.toPrompts();
+                            ctrl.createPost();
                           },
                           title: 'Next',
                           width: 400,

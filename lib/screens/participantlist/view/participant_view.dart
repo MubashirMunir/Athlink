@@ -1,5 +1,5 @@
 import 'package:athlink/module/participents/participents.dart';
-import 'package:athlink/screens/participantlist/participantlst_viewmodel/participantlist_viewmodel.dart';
+import 'package:athlink/screens/participantlist/viewModel/participantlist_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
